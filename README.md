@@ -1,7 +1,3 @@
----
-permalink: /
----
-
 # Minimal Skeleton Eleventy
 
 **Ce projet est un skeleton de projet [11ty](https://www.11ty.dev/) sur sa version stable 2.0.1.**
