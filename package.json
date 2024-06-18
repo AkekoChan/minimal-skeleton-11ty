@@ -1,0 +1,16 @@
+{
+  "name": "minimal-skeleton-11ty",
+  "version": "1.0.0",
+  "description": "A minimal skeleton to start your Eleventy project easily.",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy-img": "^4.0.2",
+    "dotenv": "^16.4.5"
+  }
+}
