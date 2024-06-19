@@ -5,9 +5,10 @@
 ## Fonctionnalités :
 
 - Pré-configuration des dossiers (input, output, includes, layouts, data);
-- Gérération des balises meta et des fichiers `sitemap.xml` et `robots.txt`;
+- Gérération des balises meta et des fichiers `sitemap.xml`/`robots.txt`;
 - Sépération des dossiers de config (collections, filters, shortcodes, etc);
-- Génération automatique des favicons.
+- Génération automatique des favicons;
+- Génération des balises picture;
 
 ## Démarrage :
 
@@ -67,6 +68,14 @@ stylesheets:
 scripts:
   - /assets/scripts/index.js
 ---
+```
+
+## Utilisation du shortcode pour la balise `picture`
+
+Pour créer vos images responsives, mettez vos images dans le répertoire `assets\images`. Puis, ajoutez le code ci-dessous dans vos pages et remplissez les champs :
+
+```liquid
+  {% render "picture.html" src: "url-de-votre-image", alt: "alternative-textuelle-de-votre-image", className: "classe-de-votre-balise-picture", imgClassName: "classe-de-votre-balise-image",isLazy: "true ou false si vous voulez que votre image soit en lazy loading" %}
 ```
 
 ## Utilisation du front matter :

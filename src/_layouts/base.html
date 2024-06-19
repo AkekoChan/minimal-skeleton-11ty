@@ -1,9 +1,8 @@
 {% comment %} Titres de la page {% endcomment %}
 {%- if page.url == "/" -%}
   {%- assign pageTitle = site.title -%}
-{% else %} 
-  {% assign pageTitle = title | default: renderData.title | append: " - " | append: site.title %}
-{% endif %} 
+{% else %}
+  {% assign pageTitle = title | default: renderData.title | append: " - " | append: site.title %}{% endif %}
 {% comment %} Description de la page {% endcomment %}
 {% assign description = description | default: site.description %}
 {% comment %} Url canonique de la page {% endcomment %}
@@ -11,52 +10,58 @@
 
 <!DOCTYPE html>
 <html lang="{{ site.language }}">
-<head>
-  <meta charset="utf-8">
-  {% comment %} Metadata pour le SEO {% endcomment %}
-  <title>{{ pageTitle }}</title>
-  <meta name="description" content="{{ description }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="{{ site.author }}">
-  <link rel="canonical" href="{{ canonicalUrl }}">
-  {% comment %} Mettre noindex: true pour ne pas afficher la page aux moteurs de recherche {% endcomment %}
-  {% if noindex %}
-    <meta name="robots" content="noindex">
-  {% endif %}
-  {% comment %} Preload des ressources  {% endcomment %}
-  {% if preloads %}
-  {% for preload in preloads %}
-    <link rel="preload" as="{{ preload.as }}" type="{{ preload.type }}" href="{{ preload.href }}" {% if preload.crossorigin %}crossorigin{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    {% comment %} Metadata pour le SEO {% endcomment %}
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="{{ site.author }}">
+    <link rel="canonical" href="{{ canonicalUrl }}">
+    {% comment %} Mettre noindex: true pour ne pas afficher la page aux moteurs de recherche {% endcomment %}
+    {% if noindex %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    {% comment %} Preload des ressources  {% endcomment %}
+    {% if preloads %}
+      {% for preload in preloads %}
+        <link
+          rel="preload"
+          as="{{ preload.as }}"
+          type="{{ preload.type }}"
+          href="{{ preload.href }}"
+          {% if preload.crossorigin %}
+          crossorigin{% endif %}>
+      {% endfor %}
+    {% endif %}
+    {% comment %} Fichiers CSS {% endcomment %}
+    {% for href in stylesheets %}
+      <link rel="stylesheet" href="{{ href }}">
+    {% endfor %}
+    {% comment %} Fichiers JS {% endcomment %}
+    {% for script in scripts %}
+      <script defer src="{{ script }}"></script>
   {% endfor %}
-  {% endif %}
-  {% comment %} fichiers CSS {% endcomment %}
-  {% for href in stylesheets %}
-    <link rel="stylesheet" href="{{ href }}">
-  {% endfor %}
-  {% comment %} fichiers JS {% endcomment %}
-  {% for script in scripts %}
-    <script defer src="{{ script }}"></script>
-  {% endfor %}
-  {% comment %} Génération des favicons {% endcomment %}
-  {% favicon 'src/assets/images/favicon.jpg' %}
-  {% comment %} Metadata Opengraph pour Facebook {% endcomment %}
-  <meta property="og:title" content="{{ openGraph.title | default: pageTitle }}">
-  {% if openGraph.image %}
-    <meta property="og:image" content="{{ openGraph.image }}">
-  {%- endif -%}
-  <meta property="og:description" content="{{ openGraph.description | default: description }}">
-  <meta property="og:url" content="{{ page.url | toAbsoluteUrl }}">
-  <meta property="og:type" content="{{ openGraph.type | default: "website" }}">
-   {% comment %} Metadata Twitter {% endcomment %}
-  <meta name="twitter:card" content="{{ openGraph.twitter.card | default: "summary" }}">
-  <meta name="twitter:title" content="{{ openGraph.title | default: pageTitle }}">
-  <meta name="twitter:description" content="{{ openGraph.description | default: description }}">
-  {% if openGraph.image %}
-    <meta name="twitter:image" content="{{ openGraph.image }}">
-  {% endif %}
-  <meta name="generator" content="{{ eleventy.generator }}" />
-</head>
-<body>
-  {{ content }}
-</body>
+    {% comment %} Génération des favicons {% endcomment %}
+    {% favicon 'src/assets/images/favicon.jpg' %}
+    {% comment %} Metadata Opengraph pour Facebook {% endcomment %}
+    <meta property="og:title" content="{{ openGraph.title | default: pageTitle }}">
+    {% if openGraph.image %}
+      <meta property="og:image" content="{{ openGraph.image }}">
+    {%- endif -%}
+    <meta property="og:description" content="{{ openGraph.description | default: description }}">
+    <meta property="og:url" content="{{ page.url | toAbsoluteUrl }}">
+    <meta property="og:type" content="{{ openGraph.type | default: "website" }}">
+      {% comment %} Metadata Twitter {% endcomment %}
+    <meta name="twitter:card" content="{{ openGraph.twitter.card | default: "summary" }}">
+    <meta name="twitter:title" content="{{ openGraph.title | default: pageTitle }}">
+    <meta name="twitter:description" content="{{ openGraph.description | default: description }}">
+    {% if openGraph.image %}
+      <meta name="twitter:image" content="{{ openGraph.image }}">
+    {% endif %}
+    <meta name="generator" content="{{ eleventy.generator }}" />
+  </head>
+  <body>
+    {{ content }}
+  </body>
 </html>

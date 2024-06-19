@@ -11,6 +11,7 @@ permalink: /
 - Pré-configuration des dossiers (input, output, includes, layouts, data);
 - Gérération des balises meta et des fichiers `sitemap.xml`/`robots.txt`;
 - Sépération des dossiers de config (collections, filters, shortcodes, etc);
-- Génération automatique des favicons.
+- Génération automatique des favicons;
+- Génération des balises picture;
 
 **Pour plus de détails, regardez le readme à la racine.**

@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+/** Metadonnées du site */
 const environmentSpecificVariables = {
   development: {
     url: "http://localhost:8080",

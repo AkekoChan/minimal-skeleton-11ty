@@ -2,7 +2,7 @@ const Image = require("@11ty/eleventy-img");
 const site = require("../../src/_data/site");
 const { imagePaths, imageUrlPath } = require("../constants/images");
 
-/** Returns link tags for the site's favicon. */
+/** Créer les favicons à partir d'un lien d'image donné */
 const faviconShortcode = async (src) => {
   const props = {
     widths: site.favicon.widths,

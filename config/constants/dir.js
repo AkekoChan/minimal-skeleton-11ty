@@ -1,4 +1,4 @@
-/** 11ty directory config */
+/** 11ty config des différents dossiers */
 const dir = {
   input: "src",
   output: "_site",
